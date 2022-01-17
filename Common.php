@@ -48,8 +48,7 @@ class HistoricalPrice
   }
 }
 
-function GetHistoricalPrices()
-{
+function GetQueryData($createRowData) {
   $query_result = GetQueryResult ("SELECT * FROM BitcoinPrices ORDER BY date DESC");
 
   if (is_a($query_result, 'mysqli_result'))
@@ -58,13 +57,20 @@ function GetHistoricalPrices()
 
     $row = $query_result->fetch_array();
     while (isset($row)) {
-      yield new HistoricalPrice($row["price_in_chf"], $row["date"]);
+      yield $createRowData($row);
 
       $row = $query_result->fetch_array();
     }
   } else {
     die("Historical data retrieval failed.");
   }
+}
+
+function GetHistoricalPrices()
+{
+  yield from GetQueryData (function($row) {
+    return new HistoricalPrice($row["price_in_chf"], $row["date"]);
+  });
 }
 
 function ClearOldData()
