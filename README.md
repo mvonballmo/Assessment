@@ -45,9 +45,9 @@ In that case, just open [PHPMyAdmin](http://localhost:8080) and execute the foll
 
 ```sql
 CREATE TABLE `BitcoinPrices` (
-                                 `id` int(6) NOT NULL AUTO_INCREMENT,
-                                 `price_in_usd` decimal(10,3) NOT NULL DEFAULT '',
-                                 `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-                                 PRIMARY KEY (`id`)
+                               `id` int(6) NOT NULL AUTO_INCREMENT,
+                               `price_in_chf` decimal(10,3) NOT NULL DEFAULT '',
+                               `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                               PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 PACK_KEYS=1;
 ```
