@@ -8,10 +8,9 @@
 - ~~Show historical prices~~
 - ~~Store price~~
 - ~~Purge prices older than 120 days~~
-- Clean up style/formatting
+- ~~Clean up style/formatting~~
 - Add tests for purging and retrieval
-- Create API instead of using SSR
-- Generate React client to query API
+- Change API to REST instead of using and access with reactive client
 
 # Developer Notes
 
@@ -47,3 +46,10 @@
 - Storage done
 - Working on purging old records
 - Records can be purged
+- Add styles
+- Review:
+  - Docker setup
+  - Readme
+  - Implementation
+  - Notes
+- That's all I've got time for. POC is ready. Have to add tests for Common.php later.
