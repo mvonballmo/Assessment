@@ -5,7 +5,7 @@
  */
 function GetQueryResult (string $query_string)
 {
-  $connection = new mysqli("bitcoin-db", "root", "\"localaccess\"", "bitcoin");
+  $connection = new mysqli("bitcoin-db", "root", "localaccess", "bitcoin");
 
   if ($connection->connect_errno)
   {
