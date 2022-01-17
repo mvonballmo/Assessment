@@ -1,5 +1,13 @@
 # Bitcoin Price Tracker
 
+This project contains a Docker image that runs a web site that does
+the following:
+
+- shows stored BitCoin prices
+- stores a new price on each refresh of the page
+- prices older than 120 days can be purged via a link
+- was developed from start to finish in 3 hours
+
 The following instructions are for local testing and development.
 
 See the [Development Journal](dev-notes.md) for how this project was developed.
