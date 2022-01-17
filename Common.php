@@ -54,20 +54,14 @@ function GetHistoricalPrices()
 
   if (is_a($query_result, 'mysqli_result'))
   {
-    $rows = [];
     $query_result->data_seek(0);
 
     $row = $query_result->fetch_array();
     while (isset($row)) {
-      $price = $row["price_in_chf"];
-      $date = $row["date"];
-
-      array_push($rows, new HistoricalPrice($price, $date));
+      yield new HistoricalPrice($row["price_in_chf"], $row["date"]);
 
       $row = $query_result->fetch_array();
     }
-
-    return $rows;
   } else {
     die("Historical data retrieval failed.");
   }

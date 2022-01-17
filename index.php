@@ -13,7 +13,7 @@ require("Common.php");
 ?>
   <h2>Historical Prices</h2>
 <?php
-  $historicalData = GetHistoricalPrices ();
+  $historicalData = iterator_to_array (GetHistoricalPrices());
   if (empty($historicalData)) {
     echo "<p>There are no prices available.</p>";
   }
