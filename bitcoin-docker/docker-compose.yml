@@ -1,0 +1,40 @@
+version: '3.2'
+
+volumes:
+  mysql-data:
+
+services:
+
+  db:
+    build: db
+    container_name: "bitcoin-db"
+    restart: unless-stopped
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD="localaccess"
+
+  web:
+    build: web
+    container_name: "bitcoin-web"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ../:/var/www/html
+    depends_on:
+      - db
+    environment:
+      XDEBUG_CONFIG: client_host=host.docker.internal
+      XDEBUG_MODE: debug
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "bitcoin-phpmyadmin"
+    restart: unless-stopped
+    environment:
+     - PMA_ARBITRARY=1
+    ports:
+     - "8080:80"
+    depends_on:
+      - db
