@@ -13,6 +13,7 @@ require("Common.php");
 ?>
   <h2>Historical Prices</h2>
 <?php
+  /** @var HistoricalPrice[] $historicalData */
   $historicalData = iterator_to_array (GetHistoricalPrices());
   if (empty($historicalData)) {
     echo "<p>There are no prices available.</p>";
@@ -26,7 +27,7 @@ require("Common.php");
   foreach ($historicalData as $datum)
   {
     $price = $datum->price;
-    $date = $datum->date;
+    $date = $datum->date->format("Y-m-d H:i:s");
     echo "<tr><td>$price</td><td>$date</td></tr>";
   }
 ?>

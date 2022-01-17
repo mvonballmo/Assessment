@@ -9,6 +9,7 @@
 - ~~Store price~~
 - ~~Purge prices older than 120 days~~
 - ~~Clean up style/formatting~~
+- ~~Add type hints~~
 - Add tests for purging and retrieval
 - Change API to REST instead of using and access with reactive client
 
@@ -53,3 +54,5 @@
     - Implementation
     - Notes
 33. That's all I've got time for. POC is ready. Have to add tests for Common.php later.
+34. Improve querying API to use generator functions
+35. Use type hints (IDE was stuck on PHP 5.6)

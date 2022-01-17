@@ -1,10 +1,9 @@
 <?php
 
 /**
- * @param $query_string
  * @return bool|mysqli_result|void
  */
-function GetQueryResult ($query_string)
+function GetQueryResult (string $query_string)
 {
   $connection = new mysqli("bitcoin-db", "root", "\"localaccess\"", "bitcoin");
 
@@ -23,7 +22,7 @@ function GetQueryResult ($query_string)
   return $query_result;
 }
 
-function GetCurrentPrice()
+function GetCurrentPrice(): float
 {
   $url='https://api.coinbase.com/v2/prices/spot?currency=CHF';
   $bitcoinInCHF=json_decode(file_get_contents($url));
@@ -38,8 +37,8 @@ function StorePrice($price)
 
 class HistoricalPrice
 {
-  public $price;
-  public $date;
+  public float $price;
+  public DateTime $date;
 
   public function __construct ($price, $date)
   {
@@ -48,7 +47,8 @@ class HistoricalPrice
   }
 }
 
-function GetQueryData($createRowData) {
+function GetQueryData($createRowData): Generator
+{
   $query_result = GetQueryResult ("SELECT * FROM BitcoinPrices ORDER BY date DESC");
 
   if (is_a($query_result, 'mysqli_result'))
@@ -66,10 +66,10 @@ function GetQueryData($createRowData) {
   }
 }
 
-function GetHistoricalPrices()
+function GetHistoricalPrices(): Generator
 {
   yield from GetQueryData (function($row) {
-    return new HistoricalPrice($row["price_in_chf"], $row["date"]);
+    return new HistoricalPrice($row["price_in_chf"], new DateTime($row["date"]));
   });
 }
 
