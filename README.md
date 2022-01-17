@@ -39,6 +39,8 @@ The application should look like the following once you've refreshed the page a 
 
 If the database is created but the table is not, then the initialization script didn't run properly.
 
+See [Development Journal](dev-notes.md) 17-21 for more information.
+
 In that case, just open [PHPMyAdmin](http://localhost:8080) and execute the following SQL manually:
 
 ```sql
