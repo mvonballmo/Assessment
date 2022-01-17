@@ -21,7 +21,6 @@ not be.
 ## Requirements
 
 - Docker
-- Composer
 
 ## Setup
 
@@ -34,7 +33,7 @@ not be.
 
 If the database is created but the table is not, then the initialization script didn't run properly.
 
-In that case, just open [PHPMyAdmin(http://localhost:8080) and execute the following SQL manually:
+In that case, just open [PHPMyAdmin](http://localhost:8080) and execute the following SQL manually:
 
 ```sql
 CREATE TABLE `BitcoinPrices` (
