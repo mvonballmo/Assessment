@@ -8,6 +8,11 @@ function GetCurrentPrice()
   return $bitcoinInCHF->data->amount;
 }
 
+function StorePrice($price)
+{
+  getQueryResult ("INSERT INTO BitcoinPrices (price_in_chf) VALUES($price)");
+}
+
 class HistoricalPrice
 {
   public $price;
@@ -22,16 +27,8 @@ class HistoricalPrice
 
 function GetHistoricalPrices()
 {
-  $connection = new mysqli("bitcoin-db", "root", "\"localaccess\"", "bitcoin");
+  $query_result = getQueryResult ("SELECT * FROM BitcoinPrices ORDER BY date DESC");
 
-  if ($connection->connect_errno)
-  {
-    die("Failed to connect to MySQL: (" . $connection->connect_errno . ") " . $connection->connect_error);
-  }
-
-  $query_string = "SELECT * FROM BitcoinPrices ORDER BY date DESC";
-
-  $query_result = $connection->query($query_string);
   if (is_a($query_result, 'mysqli_result'))
   {
     $rows = [];
@@ -49,14 +46,33 @@ function GetHistoricalPrices()
     }
 
     return $rows;
-  }
-  else if ($query_result === false)
-  {
-    die('Error executing query: ' . $connection->error);
+  } else {
+    die("Historical data retrieval failed.");
   }
 }
 
+/**
+ * @param $query_string
+ * @return bool|mysqli_result|void
+ */
+function GetQueryResult ($query_string)
+{
+  $connection = new mysqli("bitcoin-db", "root", "\"localaccess\"", "bitcoin");
 
+  if ($connection->connect_errno)
+  {
+    die("Failed to connect to MySQL: (" . $connection->connect_errno . ") " . $connection->connect_error);
+  }
+
+  $query_result = $connection->query ($query_string);
+
+  if ($query_result === false)
+  {
+    die('Error executing query: ' . $connection->error);
+  }
+
+  return $query_result;
+}
 
 ?>
   <h1>Bitcoin data</h1>
@@ -64,18 +80,21 @@ function GetHistoricalPrices()
 <?php
   $currentPrice = round(GetCurrentPrice(), 3);
   echo "1 bitcoin = CHF $currentPrice";
+
+  StorePrice($currentPrice);
 ?>
   <h1>Historical Prices</h1>
 <?php
+  $historicalData = GetHistoricalPrices ();
   if (empty($historicalData)) {
     echo "<p>There are no prices available.</p>";
   }
   else {
 ?>
+  <a href="clearOldData.php">Clear old data</a>
   <table>
 <?php
   echo "<tr><th>Price</th><th>Date</th></tr>";
-  $historicalData = GetHistoricalPrices ();
   foreach ($historicalData as $datum)
   {
     $price = $datum->price;
