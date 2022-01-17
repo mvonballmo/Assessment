@@ -29,6 +29,12 @@ not be.
 - Browse to [http://localhost:80](http://localhost:80)
 - Browse to [http://localhost:8080](http://localhost:8080) for PHPMyAdmin
 
+## Demo
+
+The application should look like the following once you've refreshed the page a few times.
+
+![](docs/assets/Screenshot.png)
+
 ## Troubleshooting
 
 If the database is created but the table is not, then the initialization script didn't run properly.
