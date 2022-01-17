@@ -1,15 +1,17 @@
 <?php
 require("Common.php");
 ?>
+  <link rel="stylesheet" href="Reset.css" />
+  <link rel="stylesheet" href="Styles.css" />
   <h1>Bitcoin data</h1>
   <h2>Current Bitcoin Price</h2>
 <?php
   $currentPrice = round(GetCurrentPrice(), 3);
-  echo "1 bitcoin = CHF $currentPrice";
+  echo "1 BTC = CHF $currentPrice";
 
   StorePrice($currentPrice);
 ?>
-  <h1>Historical Prices</h1>
+  <h2>Historical Prices</h2>
 <?php
   $historicalData = GetHistoricalPrices ();
   if (empty($historicalData)) {
