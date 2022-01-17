@@ -40,3 +40,8 @@
 - I'll have to create the schema manually in PHPMyAdmin because the shell script didn't like the quotes in the password
 - OK. Halfway through the time. Let's make sure we get it done, then make it pretty
 - Everything goes in the index.php until we have functional coverage
+- Finished getting prices
+- Fixed up page formatting a bit
+- Now for storing...
+- Storage done
+- Working on purging old records
