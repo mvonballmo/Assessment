@@ -4,10 +4,11 @@
 - ~~Set up Mysql~~
 - ~~Get price~~
 - ~~Show price with SSR~~
-- Get historical prices from database
-- Show historical prices
+- ~~Get historical prices from database~~
+- ~~Show historical prices~~
 - Store price
 - Purge prices older than 120 days
+- Clean up style/formatting
 - Create API instead of SSR
 - Generate React client to query API
 
