@@ -4,6 +4,12 @@ The following instructions are for local testing and development.
 
 See the [Development Journal](dev-notes.md) for how this project was developed.
 
+## Assumptions
+
+This project attempts to achieve the goal without using any framework, so it's
+close "to the metal" in a way that a more professionally produced software would
+not be.
+
 ## Requirements
 
 - Docker
