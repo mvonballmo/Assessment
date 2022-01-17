@@ -76,5 +76,5 @@ function GetHistoricalPrices()
 
 function ClearOldData()
 {
-//  GetQueryResult ("DELETE FROM BitcoinPrices WHERE ");
+  GetQueryResult ("DELETE FROM `BitcoinPrices` WHERE date < DATE_ADD(current_timestamp(), INTERVAL -120 DAY)");
 }

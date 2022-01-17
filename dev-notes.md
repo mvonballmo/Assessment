@@ -6,10 +6,11 @@
 - ~~Show price with SSR~~
 - ~~Get historical prices from database~~
 - ~~Show historical prices~~
-- Store price
-- Purge prices older than 120 days
+- ~~Store price~~
+- ~~Purge prices older than 120 days~~
 - Clean up style/formatting
-- Create API instead of SSR
+- Add tests for purging and retrieval
+- Create API instead of using SSR
 - Generate React client to query API
 
 # Developer Notes
@@ -45,3 +46,4 @@
 - Now for storing...
 - Storage done
 - Working on purging old records
+- Records can be purged
