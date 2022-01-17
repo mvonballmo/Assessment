@@ -12,7 +12,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD="localaccess"
+      - MYSQL_ROOT_PASSWORD=localaccess
 
   web:
     build: web
